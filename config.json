@@ -1,0 +1,16 @@
+{
+	"base": "http://127.0.0.1:5000/",
+	"prefixes": {
+		"ldp": "http://www.w3.org/ns/ldp#",
+		"foaf": "http://xmlns.com/foaf/0.1/",
+		"dcterms": "http://purl.org/dc/terms/",
+		"dcat": "http://www.w3.org/ns/dcat"
+	},
+	"contexts": [{
+		"name": "ROOT",
+		"graph": "graphs/paris_catalog.ttl"
+	}, {
+		"name": "paris",
+		"graph": "graphs/paris_catalog.ttl"
+	}]
+}

@@ -18,14 +18,14 @@
                     "application/json" .
     
     <catalog/datasets/zones-touristiques-internationales/distributions/zones-touristiques-internationales-json>
-            a       <http://www.w3.org/2012/ldp#RDFSource> ;
+            a       <http://www.w3.org/ns/ldp#RDFSource> ;
             <http://xmlns.com/foaf/0.1/primaryTopic>
                     <https://opendata.paris.fr/api/v2/catalog/datasets/zones-touristiques-internationales-json> .
 }
 
 <catalog/datasets/zones-touristiques-internationales/distributions/zones-touristiques-internationales-geojson> {
     <catalog/datasets/zones-touristiques-internationales/distributions/zones-touristiques-internationales-geojson>
-            a       <http://www.w3.org/2012/ldp#RDFSource> ;
+            a       <http://www.w3.org/ns/ldp#RDFSource> ;
             <http://xmlns.com/foaf/0.1/primaryTopic>
                     <https://opendata.paris.fr/api/v2/catalog/datasets/zones-touristiques-internationales-geojson> .
     
@@ -45,7 +45,7 @@
 
 <catalog/datasets/zones-touristiques-internationales> {
     <catalog/datasets/zones-touristiques-internationales>
-            a       <http://www.w3.org/2012/ldp#BasicContainer> ;
+            a       <http://www.w3.org/ns/ldp#BasicContainer> ;
             <http://www.w3.org/ns/ldp#contains>
                     <catalog/datasets/zones-touristiques-internationales/distributions> ;
             <http://xmlns.com/foaf/0.1/primaryTopic>
@@ -69,7 +69,7 @@
 
 <catalog/datasets/statistiques_de_creation_d_actes_d_etat_civil_par_mois/distributions/statistiques_de_creation_d_actes_d_etat_civil_par_mois-csv> {
     <catalog/datasets/statistiques_de_creation_d_actes_d_etat_civil_par_mois/distributions/statistiques_de_creation_d_actes_d_etat_civil_par_mois-csv>
-            a       <http://www.w3.org/2012/ldp#RDFSource> ;
+            a       <http://www.w3.org/ns/ldp#RDFSource> ;
             <http://xmlns.com/foaf/0.1/primaryTopic>
                     <https://opendata.paris.fr/api/v2/catalog/datasets/statistiques_de_creation_d_actes_d_etat_civil_par_mois-csv> .
     
@@ -103,7 +103,7 @@
             <http://xmlns.com/foaf/0.1/homepage>
                     <https://opendata.paris.fr> .
     
-    <catalog>  a    <http://www.w3.org/2012/ldp#BasicContainer> ;
+    <catalog>  a    <http://www.w3.org/ns/ldp#BasicContainer> ;
             <http://www.w3.org/ns/ldp#contains>
                     <catalog/datasets> ;
             <http://xmlns.com/foaf/0.1/primaryTopic>
@@ -112,7 +112,7 @@
 
 <catalog/datasets> {
     <catalog/datasets>
-            a       <http://www.w3.org/2012/ldp#BasicContainer> ;
+            a       <http://www.w3.org/ns/ldp#BasicContainer> ;
             <http://www.w3.org/ns/ldp#contains>
                     <catalog/datasets/zones-touristiques-internationales> , <catalog/datasets/statistiques_de_creation_d_actes_d_etat_civil_par_mois> .
 }
@@ -132,14 +132,14 @@
                     "text/csv" .
     
     <catalog/datasets/zones-touristiques-internationales/distributions/zones-touristiques-internationales-csv>
-            a       <http://www.w3.org/2012/ldp#RDFSource> ;
+            a       <http://www.w3.org/ns/ldp#RDFSource> ;
             <http://xmlns.com/foaf/0.1/primaryTopic>
                     <https://opendata.paris.fr/api/v2/catalog/datasets/zones-touristiques-internationales-csv> .
 }
 
 <catalog/datasets/statistiques_de_creation_d_actes_d_etat_civil_par_mois> {
     <catalog/datasets/statistiques_de_creation_d_actes_d_etat_civil_par_mois>
-            a       <http://www.w3.org/2012/ldp#BasicContainer> ;
+            a       <http://www.w3.org/ns/ldp#BasicContainer> ;
             <http://www.w3.org/ns/ldp#contains>
                     <catalog/datasets/statistiques_de_creation_d_actes_d_etat_civil_par_mois/distributions> ;
             <http://xmlns.com/foaf/0.1/primaryTopic>
@@ -165,21 +165,21 @@
 
 <catalog/datasets/zones-touristiques-internationales/distributions> {
     <catalog/datasets/zones-touristiques-internationales/distributions>
-            a       <http://www.w3.org/2012/ldp#BasicContainer> ;
+            a       <http://www.w3.org/ns/ldp#BasicContainer> ;
             <http://www.w3.org/ns/ldp#contains>
                     <catalog/datasets/zones-touristiques-internationales/distributions/zones-touristiques-internationales-csv> , <catalog/datasets/zones-touristiques-internationales/distributions/zones-touristiques-internationales-json> , <catalog/datasets/zones-touristiques-internationales/distributions/zones-touristiques-internationales-geojson> , <catalog/datasets/zones-touristiques-internationales/distributions/zones-touristiques-internationales-shp> .
 }
 
 <catalog/datasets/statistiques_de_creation_d_actes_d_etat_civil_par_mois/distributions> {
     <catalog/datasets/statistiques_de_creation_d_actes_d_etat_civil_par_mois/distributions>
-            a       <http://www.w3.org/2012/ldp#BasicContainer> ;
+            a       <http://www.w3.org/ns/ldp#BasicContainer> ;
             <http://www.w3.org/ns/ldp#contains>
                     <catalog/datasets/statistiques_de_creation_d_actes_d_etat_civil_par_mois/distributions/statistiques_de_creation_d_actes_d_etat_civil_par_mois-json> , <catalog/datasets/statistiques_de_creation_d_actes_d_etat_civil_par_mois/distributions/statistiques_de_creation_d_actes_d_etat_civil_par_mois-csv> .
 }
 
 <catalog/datasets/statistiques_de_creation_d_actes_d_etat_civil_par_mois/distributions/statistiques_de_creation_d_actes_d_etat_civil_par_mois-json> {
     <catalog/datasets/statistiques_de_creation_d_actes_d_etat_civil_par_mois/distributions/statistiques_de_creation_d_actes_d_etat_civil_par_mois-json>
-            a       <http://www.w3.org/2012/ldp#RDFSource> ;
+            a       <http://www.w3.org/ns/ldp#RDFSource> ;
             <http://xmlns.com/foaf/0.1/primaryTopic>
                     <https://opendata.paris.fr/api/v2/catalog/datasets/statistiques_de_creation_d_actes_d_etat_civil_par_mois-json> .
     
@@ -212,7 +212,7 @@
                     "application/zip" .
     
     <catalog/datasets/zones-touristiques-internationales/distributions/zones-touristiques-internationales-shp>
-            a       <http://www.w3.org/2012/ldp#RDFSource> ;
+            a       <http://www.w3.org/ns/ldp#RDFSource> ;
             <http://xmlns.com/foaf/0.1/primaryTopic>
                     <https://opendata.paris.fr/api/v2/catalog/datasets/zones-touristiques-internationales-shp> .
 }

@@ -4,13 +4,17 @@
 		"ldp": "http://www.w3.org/ns/ldp#",
 		"foaf": "http://xmlns.com/foaf/0.1/",
 		"dcterms": "http://purl.org/dc/terms/",
-		"dcat": "http://www.w3.org/ns/dcat"
+		"dcat": "http://www.w3.org/ns/dcat#"
 	},
 	"contexts": [{
 		"name": "ROOT",
 		"graph": "graphs/paris_catalog.ttl"
 	}, {
-		"name": "paris",
+		"name": "paris/d1",
 		"graph": "graphs/paris_catalog.ttl"
-	}]
+	},
+	  {
+                "name": "bistro/d1",
+                "graph": "graphs/bistro_catalog.ttl"
+          }]
 }

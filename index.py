@@ -37,7 +37,6 @@ for context in conf["contexts"]:
         #loading the prefixes
         for prefix in conf["prefixes"]:
                 tempGraph.bind(prefix,conf["prefixes"][prefix])
-	tempGraph.bind("data",currentbase)
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
@@ -107,14 +106,14 @@ def generic_controller(path):
 	#execute construct query and build LDPRS graph based on it
 	qres = g.query(rgraph)
 	resultGraph = Graph()
-	resultGraph.bind("data",currentbase)
 
 	#loading prefixes from configuration
         for prefix in conf["prefixes"]:
                 resultGraph.bind(prefix,conf["prefixes"][prefix])
 	
 	#bind the root prefix
-	resultGraph.namespace_manager.bind("",base+path+"/")
+	resultGraph.namespace_manager.bind("child",base+path+"/")
+	resultGraph.namespace_manager.bind("",base+path)
 	
 	#creating the result graph from the construct query	
 	resultGraph = resultGraph.parse(data=qres.serialize(format='xml'))

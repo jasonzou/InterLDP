@@ -20,29 +20,55 @@ base_directory = ""
 conf = open(base_directory+'config.json')
 conf = json.load(conf)
 
-for context in conf["contexts"]:
-        name = context["name"]
-        graph = base_directory+context["graph"]
-        tempGraph = ConjunctiveGraph()
+def boostrap():
+	#loop over contexts
+	i = 1
+	for context in conf["contexts"]:
+		print i
+		i = i+1
+		#if ( i > 3):
+		#	break
+		name = context["name"]
+		graph = base_directory+context["graph"]
+		tempGraph = ConjunctiveGraph()
 
-        #generating the base
-        currentbase = base
-        if (name != "ROOT"):
-                currentbase = currentbase + name + "/"
+		#generating the base
+		currentbase = base
+		if (name != "ROOT"):
+			currentbase = currentbase + name + "/"
 
-        #loading the graph
-        tempGraph.parse(graph,format="trig",publicID=currentbase)
-        graphs[name] = tempGraph
+		#loading the graph
+		tempGraph.parse(graph,format="trig",publicID=currentbase)
+		graphs[name] = tempGraph
 
-        #loading the prefixes
-        for prefix in conf["prefixes"]:
-                tempGraph.bind(prefix,conf["prefixes"][prefix])
+		#loading the prefixes
+		for prefix in conf["prefixes"]:
+			tempGraph.bind(prefix,conf["prefixes"][prefix])
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def generic_controller(path):
-	accept_header = request.headers["Accept"]
+	
+	#create the etag
+	etag = hashlib.sha1(path).hexdigest()
+	
+	#create the response object and set generic 
+	#response headers
+	response = Response()
+	response.headers["Allow"] = "GET, OPTIONS, HEAD"
+	
+	 #validate preference
 	prefer_header = None 
+        if prefer_header != None:
+                response.headers["Preference-Applied"] = "return=representation"
+        response.set_etag(etag)
+
+
+
+	#get accept header
+	accept_header = request.headers["Accept"]
+	
+	#check preference header
 	if "Prefer" in request.headers:
 		#print request.headers
 		prefer = request.headers["Prefer"]
@@ -56,24 +82,27 @@ def generic_controller(path):
 		else:
 			prefer_header = "omit_" + prefer_header
 			
-	etag = hashlib.sha1(path).hexdigest()
 	
 	currentbase = base
 	g = graphs["ROOT"]
+	
+	#validate if the request can be served
+
+	#get the second part just after /
 	secondPart = path.index("/")+path[path.index("/")+1:].index("/")+1
 	secondPart = path[:secondPart]
 	rootPath = path.split("/")[0]
-
-	
 	if secondPart in graphs:
 		currentbase = currentbase + secondPart + "/"
 		g = graphs[secondPart]
 	elif rootPath in graphs:
 		currentbase = currentbase + rootPath + "/"
 		g = graphs[rootPath]	
-	
-	response = Response()
-	
+	else:
+		response.status_code = 404
+                return response
+		
+	#get the absolute path for the resource	
 	resourceIRI = base + path
 	
 	#check if the resource exist in the LDP dataset
@@ -81,12 +110,13 @@ def generic_controller(path):
 	#print g.serialize(format="turtle")
 	qres = g.query(qask)
 	result = False
+	
+	#if result is none, return 404
 	for result in qres:
 		if not result:
 			response.status_code = 404
 			return response
 
-	response.headers["Allow"] = "GET, OPTIONS, HEAD"
 
 	
 	#the resource exist so create the result
@@ -125,6 +155,10 @@ def generic_controller(path):
 		if (result):
 			link_header = link_header + ' ,<http://www.w3.org/ns/ldp#Container>; rel="type", <http://www.w3.org/ns/ldp#BasicContainer>; rel="type" '
 	response.headers["Link"] = link_header
+	
+
+	#serialize graph based on accept
+	#or set turtle by default
 	if "application/ld+json" in accept_header:
 		response.data = resultGraph.serialize(format="json-ld")
 		response.content_type = "application/ld+json"
@@ -132,12 +166,9 @@ def generic_controller(path):
 		response.data = resultGraph.serialize(format="turtle")
 		response.content_type = "text/turtle"
 
-	#validate preference
-	if prefer_header != None:
-		response.headers["Preference-Applied"] = "return=representation"
-	response.set_etag(etag)
 	return response
 
 if __name__ == "__main__":
+	boostrap()
         app.debug = True
         app.run()

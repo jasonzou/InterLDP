@@ -3,21 +3,26 @@ from rdflib import ConjunctiveGraph,Graph
 from rdflib.namespace import Namespace, NamespaceManager
 import json
 import hashlib
+import os
+import system
 
 app = Flask(__name__)
 
+##http://opensensingcity.emse.fr/ldpdfend/
 base = "http://127.0.0.1:5000/"
 
 #object to hold all graphs
 graphs = {}
 
 #loading configurations
-conf = open('config.json')
+##base_directory = "/home/nbakeral/github/LDPDatasetFrontend/"
+base_directory = ""
+conf = open(base_directory+'config.json')
 conf = json.load(conf)
 
 for context in conf["contexts"]:
         name = context["name"]
-        graph = context["graph"]
+        graph = base_directory+context["graph"]
         tempGraph = ConjunctiveGraph()
 
         #generating the base

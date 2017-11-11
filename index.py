@@ -8,7 +8,7 @@ import system
 
 app = Flask(__name__)
 
-##http://opensensingcity.emse.fr/ldpdfend/
+##base="http://opensensingcity.emse.fr/ldpdfend/"
 base = "http://127.0.0.1:5000/"
 
 #object to hold all graphs

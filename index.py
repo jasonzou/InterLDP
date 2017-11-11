@@ -4,7 +4,7 @@ from rdflib.namespace import Namespace, NamespaceManager
 import json
 import hashlib
 import os
-import system
+import sys
 
 app = Flask(__name__)
 

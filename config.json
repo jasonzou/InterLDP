@@ -8,10 +8,6 @@
 	},
 	"contexts": [
 	{
-		"graph":"nothing",
-		"name":"ROOT"
-	},
-	{
 		"graph": "graphs/d1/tourism62.d1.ttl",
 		"name": "tourism62/d1"
 	}, {

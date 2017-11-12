@@ -26,16 +26,16 @@ def boostrap():
 	for context in conf["contexts"]:
 		print i
 		i = i+1
-		#if ( i > 3):
-		#	break
+		if ( i > 3):
+			break
 		name = context["name"]
 		graph = base_directory+context["graph"]
 		tempGraph = ConjunctiveGraph()
 
 		#generating the base
-		currentbase = base
-		if (name != "ROOT"):
-			currentbase = currentbase + name + "/"
+		currentbase = base + name
+		if (currentbase[-1] != "/"):
+			currentbase = currentbase+"/"
 
 		#loading the graph
 		tempGraph.parse(graph,format="trig",publicID=currentbase)
@@ -84,30 +84,37 @@ def generic_controller(path):
 			
 	
 	currentbase = base
-	g = graphs["ROOT"]
 	
 	#validate if the request can be served
 
 	#get the second part just after /
-	secondPart = path.index("/")+path[path.index("/")+1:].index("/")+1
-	secondPart = path[:secondPart]
-	rootPath = path.split("/")[0]
-	if secondPart in graphs:
-		currentbase = currentbase + secondPart + "/"
-		g = graphs[secondPart]
-	elif rootPath in graphs:
-		currentbase = currentbase + rootPath + "/"
-		g = graphs[rootPath]	
-	else:
+	try:
+		rootPath = path.split("/")[0]
+		secondPart = path.index("/")+path[path.index("/")+1:].index("/")+1
+		secondPart = path[:secondPart]
+		if secondPart in graphs:
+			currentbase = currentbase + secondPart + "/"
+			g = graphs[secondPart]
+		elif rootPath in graphs:
+			currentbase = currentbase + rootPath + "/"
+			g = graphs[rootPath]	
+	except:
 		response.status_code = 404
-                return response
-		
+		return response
+	
 	#get the absolute path for the resource	
 	resourceIRI = base + path
 	
 	#check if the resource exist in the LDP dataset
 	qask = "ASK WHERE { GRAPH <"+resourceIRI+"> {?s ?p ?o .}}"
+	print qask
 	#print g.serialize(format="turtle")
+	grs =  g.serialize(format="trig")
+	
+	f = open("x","w")
+	f.write(grs)
+	f.close()	
+
 	qres = g.query(qask)
 	result = False
 	
@@ -118,6 +125,7 @@ def generic_controller(path):
 			return response
 
 
+	print "enters here"	
 	
 	#the resource exist so create the result
 	rgraph = "CONSTRUCT { ?s ?p ?o . } WHERE { GRAPH <"+resourceIRI+"> {?s ?p ?o .}}"
@@ -150,7 +158,7 @@ def generic_controller(path):
 
 	#creating the result	
 	link_header = '<http://wiki.apache.org/marmotta/LDPImplementationReport/2014-09-16>; rel="http://www.w3.org/ns/ldp#constrainedBy", <http://www.w3.org/ns/ldp#Resource>; rel="type", <http://www.w3.org/ns/ldp#RDFSource>; rel="type"'
-	qres = g.query("ASK WHERE { GRAPH <"+resourceIRI+"> { <"+resourceIRI+"> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/ldp#BasicContainer> .}}")
+	qres = resultGraph.query("ASK WHERE { <"+resourceIRI+"> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/ldp#BasicContainer> .}")
 	for result in qres:
 		if (result):
 			link_header = link_header + ' ,<http://www.w3.org/ns/ldp#Container>; rel="type", <http://www.w3.org/ns/ldp#BasicContainer>; rel="type" '

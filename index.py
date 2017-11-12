@@ -20,40 +20,42 @@ base_directory = ""
 conf = open(base_directory+'config.json')
 conf = json.load(conf)
 
-#loop over contexts
-i = 1
-for context in conf["contexts"]:
-	print i
-	i = i+1
-	#if ( i > 3):
-	#	break
-	name = context["name"]
-	graph = base_directory+context["graph"]
-	tempGraph = ConjunctiveGraph()
-
-	#generating the base
-	currentbase = base + name
-	if (currentbase[-1] != "/"):
-		currentbase = currentbase+"/"
-
-	#loading the graph
-	tempGraph.parse(graph,format="trig",publicID=currentbase)
-	graphs[name] = tempGraph
-
-	#loading the prefixes
-	for prefix in conf["prefixes"]:
-		tempGraph.bind(prefix,conf["prefixes"][prefix])
+def getContext(contextName):
+	for obj in conf["contexts"]:
+		if obj["name"] == contextName:
+			return obj
+	return None
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def generic_controller(path):
+	currentbase = base
+	
+	#create the response object and set generic 
+	response = Response()
+
+	#validate if the request can be served
+        #get the second part just after /
+	rootPath = path.split("/")[0]
+	secondPart = path.index("/")+path[path.index("/")+1:].index("/")+1
+	secondPart = path[:secondPart]
+	obj = getContext(secondPart)	
+	if obj != None:
+		name = obj["name"]
+		graph = base_directory+obj["graph"]
+		g = ConjunctiveGraph()
+		if (currentbase[-1] != "/"):
+			currentbase = currentbase+"/"
+		currentbase = currentbase + secondPart + "/"
+		g.parse(graph,format="trig",publicID=currentbase)
+	else:
+		response.status_code = 404
+		return response
 	
 	#create the etag
 	etag = hashlib.sha1(path).hexdigest()
 	
-	#create the response object and set generic 
 	#response headers
-	response = Response()
 	response.headers["Allow"] = "GET, OPTIONS, HEAD"
 	
 	 #validate preference
@@ -82,24 +84,6 @@ def generic_controller(path):
 			prefer_header = "omit_" + prefer_header
 			
 	
-	currentbase = base
-	
-	#validate if the request can be served
-
-	#get the second part just after /
-	try:
-		rootPath = path.split("/")[0]
-		secondPart = path.index("/")+path[path.index("/")+1:].index("/")+1
-		secondPart = path[:secondPart]
-		if secondPart in graphs:
-			currentbase = currentbase + secondPart + "/"
-			g = graphs[secondPart]
-		elif rootPath in graphs:
-			currentbase = currentbase + rootPath + "/"
-			g = graphs[rootPath]	
-	except:
-		response.status_code = 404
-		return response
 	
 	#get the absolute path for the resource	
 	resourceIRI = base + path
@@ -116,7 +100,6 @@ def generic_controller(path):
 			return response
 
 
-	print "enters here"	
 	
 	#the resource exist so create the result
 	rgraph = "CONSTRUCT { ?s ?p ?o . } WHERE { GRAPH <"+resourceIRI+"> {?s ?p ?o .}}"

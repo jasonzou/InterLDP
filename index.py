@@ -25,8 +25,8 @@ i = 1
 for context in conf["contexts"]:
 	print i
 	i = i+1
-	if ( i > 3):
-		break
+	#if ( i > 3):
+	#	break
 	name = context["name"]
 	graph = base_directory+context["graph"]
 	tempGraph = ConjunctiveGraph()

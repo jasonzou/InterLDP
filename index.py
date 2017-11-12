@@ -107,14 +107,6 @@ def generic_controller(path):
 	
 	#check if the resource exist in the LDP dataset
 	qask = "ASK WHERE { GRAPH <"+resourceIRI+"> {?s ?p ?o .}}"
-	print qask
-	#print g.serialize(format="turtle")
-	grs =  g.serialize(format="trig")
-	
-	f = open("x","w")
-	f.write(grs)
-	f.close()	
-
 	qres = g.query(qask)
 	result = False
 	

@@ -20,30 +20,29 @@ base_directory = ""
 conf = open(base_directory+'config.json')
 conf = json.load(conf)
 
-def boostrap():
-	#loop over contexts
-	i = 1
-	for context in conf["contexts"]:
-		print i
-		i = i+1
-		if ( i > 3):
-			break
-		name = context["name"]
-		graph = base_directory+context["graph"]
-		tempGraph = ConjunctiveGraph()
+#loop over contexts
+i = 1
+for context in conf["contexts"]:
+	print i
+	i = i+1
+	if ( i > 3):
+		break
+	name = context["name"]
+	graph = base_directory+context["graph"]
+	tempGraph = ConjunctiveGraph()
 
-		#generating the base
-		currentbase = base + name
-		if (currentbase[-1] != "/"):
-			currentbase = currentbase+"/"
+	#generating the base
+	currentbase = base + name
+	if (currentbase[-1] != "/"):
+		currentbase = currentbase+"/"
 
-		#loading the graph
-		tempGraph.parse(graph,format="trig",publicID=currentbase)
-		graphs[name] = tempGraph
+	#loading the graph
+	tempGraph.parse(graph,format="trig",publicID=currentbase)
+	graphs[name] = tempGraph
 
-		#loading the prefixes
-		for prefix in conf["prefixes"]:
-			tempGraph.bind(prefix,conf["prefixes"][prefix])
+	#loading the prefixes
+	for prefix in conf["prefixes"]:
+		tempGraph.bind(prefix,conf["prefixes"][prefix])
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
@@ -169,6 +168,5 @@ def generic_controller(path):
 	return response
 
 if __name__ == "__main__":
-	boostrap()
         app.debug = True
         app.run()

@@ -26,8 +26,7 @@ def bootstrap():
         for context in conf["contexts"]:
                 print i
                 print context
-                print
-                #i = i+1
+                i = i+1
                 #if ( i > 4):
                 #       break
                 name = context["name"]
@@ -90,7 +89,6 @@ def generic_controller(path):
         #validate if the request can be served
 
         #get the second part just after /
-        print str(graphs)
         try:
                 rootPath = path.split("/")[0]
                 secondPart = path.index("/")+path[path.index("/")+1:].index("/")+1
@@ -122,8 +120,6 @@ def generic_controller(path):
                         response.status_code = 404
                         return response
 
-
-        print "enters here"
 
         #the resource exist so create the result
         rgraph = "CONSTRUCT { ?s ?p ?o . } WHERE { GRAPH <"+resourceIRI+"> {?s ?p ?o .}}"

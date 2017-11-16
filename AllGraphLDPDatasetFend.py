@@ -20,6 +20,7 @@ base_directory = "/home/nbakeral/github/LDPDatasetFrontend/"
 conf = open(base_directory+'config.json')
 conf = json.load(conf)
 
+@app.before_request
 def bootstrap():
         #loop over contexts
         i = 1
@@ -27,9 +28,9 @@ def bootstrap():
                 print i
                 print context
                 print
-                #i = i+1
-                #if ( i > 4):
-                #       break
+                i = i+1
+                if ( i > 4):
+                       break
                 name = context["name"]
                 graph = base_directory+context["graph"]
                 tempGraph = ConjunctiveGraph()
@@ -149,7 +150,10 @@ def generic_controller(path):
 
         #bind the root prefix
         resultGraph.namespace_manager.bind("child",base+path+"/")
-        resultGraph.namespace_manager.bind("",base+path)
+
+	parentPath = base + path
+	parentPath = parentPath[:parentPath.rfind("/")]+"/"
+        resultGraph.namespace_manager.bind("parent",parentPath)
 
         #creating the result graph from the construct query
         resultGraph = resultGraph.parse(data=qres.serialize(format='xml'))
@@ -176,6 +180,4 @@ def generic_controller(path):
 
 if __name__ == "__main__":
         app.debug = True
-        bootstrap()
         app.run()
-~                        

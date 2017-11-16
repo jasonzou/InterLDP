@@ -1,58 +1,3 @@
-from flask import Flask,Response,request
-from rdflib import ConjunctiveGraph,Graph
-from rdflib.namespace import Namespace, NamespaceManager
-import json
-import hashlib
-import os
-import sys
-
-app = Flask(__name__)
-
-base="http://opensensingcity.emse.fr/ldpdfend/"
-##base = "http://127.0.0.1:5000/"
-
-#object to hold all graphs
-graphs = {}
-
-#loading configurations
-base_directory = "/home/nbakeral/github/LDPDatasetFrontend/"
-##base_directory = ""
-conf = open(base_directory+'config.json')
-conf = json.load(conf)
-
-def bootstrap():
-        #loop over contexts
-        i = 1
-        for context in conf["contexts"]:
-                print i
-                print context
-                i = i+1
-                #if ( i > 4):
-                #       break
-                name = context["name"]
-                graph = base_directory+context["graph"]
-                tempGraph = ConjunctiveGraph()
-
-                #generating the base
-                currentbase = base + name
-                if (currentbase[-1] != "/"):
-                        currentbase = currentbase+"/"
-
-                #loading the graph
-                tempGraph.parse(graph,format="trig",publicID=currentbase)
-                graphs[name] = tempGraph
-
-                #loading the prefixes
-                for prefix in conf["prefixes"]:
-                        tempGraph.bind(prefix,conf["prefixes"][prefix])
-
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def generic_controller(path):
-
-        #create the etag
-        etag = hashlib.sha1(path).hexdigest()
-
         #create the response object and set generic
         #response headers
         response = Response()
@@ -145,7 +90,7 @@ def generic_controller(path):
 
         #bind the root prefix
         resultGraph.namespace_manager.bind("child",base+path+"/")
-        resultGraph.namespace_manager.bind("",base+path)
+        resultGraph.namespace_manager.bind("parent",base+path[:path.rfind("/")]+"/")
 
         #creating the result graph from the construct query
         resultGraph = resultGraph.parse(data=qres.serialize(format='xml'))
@@ -172,6 +117,7 @@ def generic_controller(path):
 
 if __name__ == "__main__":
         app.debug = True
-        bootstrap()
         app.run()
-~                        
+~                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+~                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+~                                                 

@@ -20,7 +20,7 @@ base_directory = "/home/nbakeral/github/LDPDatasetFrontend/"
 conf = open(base_directory+'config.json')
 conf = json.load(conf)
 
-@app.before_request
+@app.before_first_request
 def bootstrap():
         #loop over contexts
         i = 1

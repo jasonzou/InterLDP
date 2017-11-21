@@ -6,138 +6,137 @@
 		"dcterms": "http://purl.org/dc/terms/",
 		"dcat": "http://www.w3.org/ns/dcat#"
 	},
-	"contexts": [
-	{
-		"graph": "graphs/d1/tourism62.d1.ttl",
+	"contexts": [{
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/tourism62.d1.trig",
 		"name": "tourism62/d1"
 	}, {
-		"graph": "graphs/d1/angers.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/angers.d1.trig",
 		"name": "angers/d1"
 	}, {
-		"graph": "graphs/d1/bistrotdepays.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/bistrotdepays.d1.trig",
 		"name": "bistrotdepays/d1"
 	}, {
-		"graph": "graphs/d1/datanova.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/datanova.d1.trig",
 		"name": "datanova/d1"
 	}, {
-		"graph": "graphs/d1/sarthe.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/sarthe.d1.trig",
 		"name": "sarthe/d1"
 	}, {
-		"graph": "graphs/d1/enedis.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/enedis.d1.trig",
 		"name": "enedis/d1"
 	}, {
-		"graph": "graphs/d1/hauts-de-seine.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/hauts-de-seine.d1.trig",
 		"name": "hauts-de-seine/d1"
 	}, {
-		"graph": "graphs/d1/grandpoitiers.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/grandpoitiers.d1.trig",
 		"name": "grandpoitiers/d1"
 	}, {
-		"graph": "graphs/d1/iledefrance.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/iledefrance.d1.trig",
 		"name": "iledefrance/d1"
 	}, {
-		"graph": "graphs/d1/datainfolocale.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/datainfolocale.d1.trig",
 		"name": "datainfolocale/d1"
 	}, {
-		"graph": "graphs/d1/haute-garonne.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/haute-garonne.d1.trig",
 		"name": "haute-garonne/d1"
 	}, {
-		"graph": "graphs/d1/navitia.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/navitia.d1.trig",
 		"name": "navitia/d1"
 	}, {
-		"graph": "graphs/d1/corsica.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/corsica.d1.trig",
 		"name": "corsica/d1"
 	}, {
-		"graph": "graphs/d1/paris.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/paris.d1.trig",
 		"name": "paris/d1"
 	}, {
-		"graph": "graphs/d1/ratp.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/ratp.d1.trig",
 		"name": "ratp/d1"
 	}, {
-		"graph": "graphs/d1/rennesmetropole.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/rennesmetropole.d1.trig",
 		"name": "rennesmetropole/d1"
 	}, {
-		"graph": "graphs/d1/sncf.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/sncf.d1.trig",
 		"name": "sncf/d1"
 	}, {
-		"graph": "graphs/d1/rennesmetropole.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/rennesmetropole.d1.trig",
 		"name": "rennesmetropole/d1"
 	}, {
-		"graph": "graphs/d1/stif.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/stif.d1.trig",
 		"name": "stif/d1"
 	}, {
-		"graph": "graphs/d1/toulouse.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/toulouse.d1.trig",
 		"name": "toulouse/d1"
 	}, {
-		"graph": "graphs/d1/agen.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/agen.d1.trig",
 		"name": "agen/d1"
 	}, {
-		"graph": "graphs/d1/issy.d1.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/issy.d1.trig",
 		"name": "issy/d1"
 	}, {
-		"graph": "graphs/d2/tourism62.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/tourism62.d2.trig",
 		"name": "tourism62/d2"
 	}, {
-		"graph": "graphs/d2/angers.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/angers.d2.trig",
 		"name": "angers/d2"
 	}, {
-		"graph": "graphs/d2/bistrotdepays.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/bistrotdepays.d2.trig",
 		"name": "bistrotdepays/d2"
 	}, {
-		"graph": "graphs/d2/datanova.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/datanova.d2.trig",
 		"name": "datanova/d2"
 	}, {
-		"graph": "graphs/d2/sarthe.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/sarthe.d2.trig",
 		"name": "sarthe/d2"
 	}, {
-		"graph": "graphs/d2/enedis.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/enedis.d2.trig",
 		"name": "enedis/d2"
 	}, {
-		"graph": "graphs/d2/hauts-de-seine.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/hauts-de-seine.d2.trig",
 		"name": "hauts-de-seine/d2"
 	}, {
-		"graph": "graphs/d2/grandpoitiers.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/grandpoitiers.d2.trig",
 		"name": "grandpoitiers/d2"
 	}, {
-		"graph": "graphs/d2/iledefrance.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/iledefrance.d2.trig",
 		"name": "iledefrance/d2"
 	}, {
-		"graph": "graphs/d2/datainfolocale.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/datainfolocale.d2.trig",
 		"name": "datainfolocale/d2"
 	}, {
-		"graph": "graphs/d2/haute-garonne.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/haute-garonne.d2.trig",
 		"name": "haute-garonne/d2"
 	}, {
-		"graph": "graphs/d2/navitia.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/navitia.d2.trig",
 		"name": "navitia/d2"
 	}, {
-		"graph": "graphs/d2/corsica.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/corsica.d2.trig",
 		"name": "corsica/d2"
 	}, {
-		"graph": "graphs/d2/paris.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/paris.d2.trig",
 		"name": "paris/d2"
 	}, {
-		"graph": "graphs/d2/ratp.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/ratp.d2.trig",
 		"name": "ratp/d2"
 	}, {
-		"graph": "graphs/d2/rennesmetropole.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/rennesmetropole.d2.trig",
 		"name": "rennesmetropole/d2"
 	}, {
-		"graph": "graphs/d2/sncf.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/sncf.d2.trig",
 		"name": "sncf/d2"
 	}, {
-		"graph": "graphs/d2/rennesmetropole.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/rennesmetropole.d2.trig",
 		"name": "rennesmetropole/d2"
 	}, {
-		"graph": "graphs/d2/stif.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/stif.d2.trig",
 		"name": "stif/d2"
 	}, {
-		"graph": "graphs/d2/toulouse.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/toulouse.d2.trig",
 		"name": "toulouse/d2"
 	}, {
-		"graph": "graphs/d2/agen.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/agen.d2.trig",
 		"name": "agen/d2"
 	}, {
-		"graph": "graphs/d2/issy.d2.ttl",
+		"PLDPDataset": "http://opensensingcity.emse.fr/sparql/issy.d2.trig",
 		"name": "issy/d2"
 	}]
 }

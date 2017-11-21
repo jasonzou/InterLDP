@@ -5,8 +5,28 @@ import json
 import hashlib
 import os
 import sys
+from SPARQLWrapper import SPARQLWrapper, JSON
 
 app = Flask(__name__)
+
+def getRS(url,query):
+	query = query.replace("http://127.0.0.1:5000/","http://opensensingcity.emse.fr/ldpdfend/")
+	print query
+	sparql = SPARQLWrapper(url)
+	sparql.setQuery(query)
+	sparql.setReturnFormat(JSON)
+	results = sparql.query().convert()
+	return results
+
+def getG(url,query):
+	query = query.replace("http://127.0.0.1:5000/","http://opensensingcity.emse.fr/ldpdfend/")
+        sparql = SPARQLWrapper(url)
+        sparql.returnFormat = "text/turtle"
+        sparql.setQuery(query)
+        result = sparql.query()
+        data = result.response.read()
+        resultGraph = Graph().parse(data=data,format="turtle")
+        return resultGraph
 
 ##base="http://opensensingcity.emse.fr/ldpdfend/"
 base = "http://127.0.0.1:5000/"
@@ -42,12 +62,10 @@ def generic_controller(path):
 	obj = getContext(secondPart)	
 	if obj != None:
 		name = obj["name"]
-		graph = base_directory+obj["graph"]
-		g = ConjunctiveGraph()
+		pURL = obj["PLDPDataset"]
 		if (currentbase[-1] != "/"):
 			currentbase = currentbase+"/"
 		currentbase = currentbase + secondPart + "/"
-		g.parse(graph,format="trig",publicID=currentbase)
 	else:
 		response.status_code = 404
 		return response
@@ -90,14 +108,15 @@ def generic_controller(path):
 	
 	#check if the resource exist in the LDP dataset
 	qask = "ASK WHERE { GRAPH <"+resourceIRI+"> {?s ?p ?o .}}"
-	qres = g.query(qask)
-	result = False
+	qres = getRS(pURL,qask)
+	print pURL
+	print qres
+	result = qres["boolean"]
 	
 	#if result is none, return 404
-	for result in qres:
-		if not result:
-			response.status_code = 404
-			return response
+	if not result:
+		response.status_code = 404
+		return response
 
 
 	
@@ -116,8 +135,7 @@ def generic_controller(path):
 	#print rgraph
 	
 	#execute construct query and build LDPRS graph based on it
-	qres = g.query(rgraph)
-	resultGraph = Graph()
+	resultGraph = getG(pURL,rgraph)
 
 	#loading prefixes from configuration
         for prefix in conf["prefixes"]:
@@ -125,10 +143,10 @@ def generic_controller(path):
 	
 	#bind the root prefix
 	resultGraph.namespace_manager.bind("child",base+path+"/")
-	resultGraph.namespace_manager.bind("",base+path)
+	resultGraph.namespace_manager.bind("parent",base+path[:path.rfind("/")+1])
 	
 	#creating the result graph from the construct query	
-	resultGraph = resultGraph.parse(data=qres.serialize(format='xml'))
+	#resultGraph = resultGraph.parse(data=qres.serialize(format='xml'))
 
 	#creating the result	
 	link_header = '<http://wiki.apache.org/marmotta/LDPImplementationReport/2014-09-16>; rel="http://www.w3.org/ns/ldp#constrainedBy", <http://www.w3.org/ns/ldp#Resource>; rel="type", <http://www.w3.org/ns/ldp#RDFSource>; rel="type"'

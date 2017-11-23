@@ -77,10 +77,15 @@ base_directory = ""
 conf = open(base_directory+'config.json')
 conf = json.load(conf)
 
-def getContext(contextName):
+def getContext(path):
+	names = {}
 	for obj in conf["contexts"]:
-		if obj["name"] == contextName:
-			return obj
+		names[obj["name"]] = obj
+	
+	while (len(path) > 0):
+		if path in names:
+			return names[path]
+		path = path[:path.rfind("/")]
 	return None
 
 @app.route('/', defaults={'path': ''})
@@ -93,10 +98,7 @@ def generic_controller(path):
 
 	#validate if the request can be served
         #get the second part just after /
-	rootPath = path.split("/")[0]
-	secondPart = path.index("/")+path[path.index("/")+1:].index("/")+1
-	secondPart = path[:secondPart]
-	obj = getContext(secondPart)	
+	obj = getContext(path)	
 	if obj != None:
 		name = obj["name"]
 		pURL = obj["PLDPDataset"]
@@ -105,7 +107,7 @@ def generic_controller(path):
 			vURL = obj["VLDPDataset"]
 		if (currentbase[-1] != "/"):
 			currentbase = currentbase+"/"
-		currentbase = currentbase + secondPart + "/"
+		currentbase = currentbase +  name + "/"
 	else:
 		response.status_code = 404
 		return response

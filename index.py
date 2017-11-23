@@ -6,12 +6,49 @@ import hashlib
 import os
 import sys
 from SPARQLWrapper import SPARQLWrapper, JSON
+from DataSourceFactory import *
 
 app = Flask(__name__)
 
+def getVirtualGraph(vURL,resourceIRI):
+	sparql = SPARQLWrapper(vURL)
+	vG = Graph()	
+	
+	#return empty graph
+	#if there is no virtual URL
+	if vURL == None:
+		return vG
+	
+	#SPARQL Prefixes
+	prefix = "PREFIX on: <http://opensensingcity.emse.fr/LDPDesignVocabulary/>"
+	#get all resource maps
+	query = """ SELECT DISTINCT ?cq ?ds ?type ?location ?liftingRule WHERE { <resourceIRI> on:compiledResourceMap [on:compiledGraphQuery ?cq;on:dataSource ?ds;];.?ds a ?type;on:location ?location .OPTIONAL { ?ds on:liftingRule ?liftingRule . }}"""
+	query = query.replace("resourceIRI",resourceIRI)
+	query = prefix+query 	
+	query = query.replace("http://127.0.0.1:5000/","http://opensensingcity.emse.fr/ldpdfend/")
+	
+	#print query
+	
+	#send the query for processing
+	sparql.setQuery(query)
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+	for result in results["results"]["bindings"]:
+		constructQuery = result["cq"]["value"]
+		dataSourceIRI = result["ds"]["value"]
+		ds = createDataSource(result)
+		resultGraph = ds.cquery(constructQuery)
+		vG = vG + resultGraph
+	#for each resource maps
+	#get the data source
+	#make the construct query
+	#and genrate a new graph
+	#and union with all previous graphs
+
+	return vG
+
 def getRS(url,query):
 	query = query.replace("http://127.0.0.1:5000/","http://opensensingcity.emse.fr/ldpdfend/")
-	print query
 	sparql = SPARQLWrapper(url)
 	sparql.setQuery(query)
 	sparql.setReturnFormat(JSON)
@@ -28,15 +65,15 @@ def getG(url,query):
         resultGraph = Graph().parse(data=data,format="turtle")
         return resultGraph
 
-base="http://opensensingcity.emse.fr/ldpdfend/"
-##base = "http://127.0.0.1:5000/"
+##base="http://opensensingcity.emse.fr/ldpdfend/"
+base = "http://127.0.0.1:5000/"
 
 #object to hold all graphs
 graphs = {}
 
 #loading configurations
-base_directory = "/home/nbakeral/github/LDPDatasetFrontend/"
-##base_directory = ""
+##base_directory = "/home/nbakeral/github/LDPDatasetFrontend/"
+base_directory = ""
 conf = open(base_directory+'config.json')
 conf = json.load(conf)
 
@@ -63,6 +100,9 @@ def generic_controller(path):
 	if obj != None:
 		name = obj["name"]
 		pURL = obj["PLDPDataset"]
+		vURL = None
+		if "VLDPDataset" in obj:
+			vURL = obj["VLDPDataset"]
 		if (currentbase[-1] != "/"):
 			currentbase = currentbase+"/"
 		currentbase = currentbase + secondPart + "/"
@@ -109,8 +149,6 @@ def generic_controller(path):
 	#check if the resource exist in the LDP dataset
 	qask = "ASK WHERE { GRAPH <"+resourceIRI+"> {?s ?p ?o .}}"
 	qres = getRS(pURL,qask)
-	print pURL
-	print qres
 	result = qres["boolean"]
 	
 	#if result is none, return 404
@@ -156,6 +194,8 @@ def generic_controller(path):
 			link_header = link_header + ' ,<http://www.w3.org/ns/ldp#Container>; rel="type", <http://www.w3.org/ns/ldp#BasicContainer>; rel="type" '
 	response.headers["Link"] = link_header
 	
+	#generate the virtual graph
+	resultGraph = resultGraph + getVirtualGraph(vURL,resourceIRI)	
 
 	#serialize graph based on accept
 	#or set turtle by default

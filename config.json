@@ -142,5 +142,10 @@
 	"PLDPDataset" : "http://opensensingcity.emse.fr/sparql/bistro.d2.v.trig",
 	"VLDPDataset" : "http://opensensingcity.emse.fr/sparql/bistro.v.ttl",
 	"name": "bistro/v"
-}] 
+},
+{
+        "PLDPDataset" : "http://opensensingcity.emse.fr/sparql/issy.d4.trig",
+        "name": "issy/d4"
+}
+] 
 }

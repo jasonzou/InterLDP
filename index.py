@@ -7,6 +7,10 @@ import os
 import sys
 from SPARQLWrapper import SPARQLWrapper, JSON
 from DataSourceFactory import *
+import urllib
+
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 app = Flask(__name__)
 
@@ -80,8 +84,7 @@ conf = json.load(conf)
 def getContext(path):
 	names = {}
 	for obj in conf["contexts"]:
-		names[obj["name"]] = obj
-	
+		names[obj["name"]] = obj	
 	while (len(path) > 0):
 		if path in names:
 			return names[path]
@@ -99,6 +102,7 @@ def generic_controller(path):
 	#validate if the request can be served
         #get the second part just after /
 	obj = getContext(path)	
+	print obj
 	if obj != None:
 		name = obj["name"]
 		pURL = obj["PLDPDataset"]
@@ -146,8 +150,10 @@ def generic_controller(path):
 	
 	
 	#get the absolute path for the resource	
-	resourceIRI = base + path
-	
+	resourceIRI = base + urllib.quote(path.encode('utf8'))
+	print resourceIRI	
+	#resourceIRI = base + urllib.quote(path)
+		
 	#check if the resource exist in the LDP dataset
 	qask = "ASK WHERE { GRAPH <"+resourceIRI+"> {?s ?p ?o .}}"
 	qres = getRS(pURL,qask)

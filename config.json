@@ -144,8 +144,138 @@
 	"name": "bistro/v"
 },
 {
-        "PLDPDataset" : "http://opensensingcity.emse.fr/sparql/issy.d4.trig",
-        "name": "issy/d4"
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/tourism62.d4.trig",
+	"name": "tourism62/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/angers.d4.trig",
+	"name": "angers/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/bistrotdepays.d4.trig",
+	"name": "bistrotdepays/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/datanova.d4.trig",
+	"name": "datanova/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/sarthe.d4.trig",
+	"name": "sarthe/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/enedis.d4.trig",
+	"name": "enedis/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/hauts-de-seine.d4.trig",
+	"name": "hauts-de-seine/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/grandpoitiers.d4.trig",
+	"name": "grandpoitiers/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/iledefrance.d4.trig",
+	"name": "iledefrance/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/datainfolocale.d4.trig",
+	"name": "datainfolocale/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/haute-garonne.d4.trig",
+	"name": "haute-garonne/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/navitia.d4.trig",
+	"name": "navitia/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/corsica.d4.trig",
+	"name": "corsica/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/paris.d4.trig",
+	"name": "paris/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/ratp.d4.trig",
+	"name": "ratp/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/rennesmetropole.d4.trig",
+	"name": "rennesmetropole/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/sncf.d4.trig",
+	"name": "sncf/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/rennesmetropole.d4.trig",
+	"name": "rennesmetropole/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/stif.d4.trig",
+	"name": "stif/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/toulouse.d4.trig",
+	"name": "toulouse/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/agen.d4.trig",
+	"name": "agen/d4"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/issy.d4.trig",
+	"name": "issy/d4"
+},
+{
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/tourism62.d3.trig",
+	"name": "tourism62/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/angers.d3.trig",
+	"name": "angers/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/bistrotdepays.d3.trig",
+	"name": "bistrotdepays/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/datanova.d3.trig",
+	"name": "datanova/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/sarthe.d3.trig",
+	"name": "sarthe/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/enedis.d3.trig",
+	"name": "enedis/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/hauts-de-seine.d3.trig",
+	"name": "hauts-de-seine/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/grandpoitiers.d3.trig",
+	"name": "grandpoitiers/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/iledefrance.d3.trig",
+	"name": "iledefrance/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/datainfolocale.d3.trig",
+	"name": "datainfolocale/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/haute-garonne.d3.trig",
+	"name": "haute-garonne/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/navitia.d3.trig",
+	"name": "navitia/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/corsica.d3.trig",
+	"name": "corsica/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/paris.d3.trig",
+	"name": "paris/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/ratp.d3.trig",
+	"name": "ratp/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/rennesmetropole.d3.trig",
+	"name": "rennesmetropole/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/sncf.d3.trig",
+	"name": "sncf/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/rennesmetropole.d3.trig",
+	"name": "rennesmetropole/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/stif.d3.trig",
+	"name": "stif/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/toulouse.d3.trig",
+	"name": "toulouse/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/agen.d3.trig",
+	"name": "agen/d3"
+}, {
+	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/issy.d3.trig",
+	"name": "issy/d3"
 }
 ] 
 }

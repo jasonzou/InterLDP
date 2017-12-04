@@ -6,7 +6,12 @@
 		"dcterms": "http://purl.org/dc/terms/",
 		"dcat": "http://www.w3.org/ns/dcat#"
 	},
-	"contexts": [{
+	"contexts": [
+{
+        "PLDPDataset":"http://opensensingcity.emse.fr/sparql/countriesdataportals.trig",
+        "name":"dataportals/countries"
+},
+{
 	"PLDPDataset": "http://opensensingcity.emse.fr/sparql/tourism62.d1.trig",
 	"name": "tourism62/d1"
 }, {

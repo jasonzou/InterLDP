@@ -6,7 +6,7 @@ InterLDP is an linked data platform server based on the Linked Data Platform (LD
 3. Only GET,HEAD,OPTIONS HTTP requests are supported on LDP RDF Sources
 4. Paging and sorting are not supported
 5. Sec. 4.2.1.6 (rel='ldp:constrainedBy'-Link) is fulfilled by pointing to this page.
-Link: <https://github.com/noorbakerally/InterLDP>; rel="http://www.w3.org/ns/ldp#constrainedBy"
+Link: \<https://github.com/noorbakerally/InterLDP\>; rel="http://www.w3.org/ns/ldp#constrainedBy"
 
 References:
 

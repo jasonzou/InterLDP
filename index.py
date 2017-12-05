@@ -18,8 +18,6 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 app = Flask(__name__)
 
-##base="http://opensensingcity.emse.fr/ldpdfend/"
-base = "http://127.0.0.1:5000/"
 
 #object to hold all graphs
 graphs = {}
@@ -29,6 +27,9 @@ graphs = {}
 base_directory = ""
 conf = open(base_directory+'config.json')
 conf = json.load(conf)
+
+##base="http://opensensingcity.emse.fr/ldpdfend/"
+base = conf["base"]
 
 def getContext(path):
 	names = {}

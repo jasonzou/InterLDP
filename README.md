@@ -8,7 +8,8 @@ InterLDP is an linked data platform server based on the Linked Data Platform (LD
 5. Sec. 4.2.1.6 (rel='ldp:constrainedBy'-Link) is fulfilled by pointing to this page.
 `Link: <https://github.com/noorbakerally/InterLDP>; rel="http://www.w3.org/ns/ldp#constrainedBy"`
 
-References:
+The execution report generated using the <a href="https://w3c.github.io/ldp-testsuite/">LDP Test Suite</a> can be found at http://opensensingcity.emse.fr/interldp/ldp-testsuite-execution-report.html .
 
+References:
 1. Speicher, Steve, John Arwe, and Ashok Malhotra. "Linked data platform 1.0." W3C Recommendation, February 26 (2015).
 APA	(https://www.w3.org/TR/ldp/)

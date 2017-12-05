@@ -1,5 +1,7 @@
 from rdflib import Graph
 from SPARQLWrapper import SPARQLWrapper, JSON
+import requests
+import json
 
 class DataSource:
 	def __init__(self):
@@ -18,6 +20,7 @@ class RDFFileDataSource(DataSource):
 		self.liftingRule = None
 
 	def __init__(self,location,liftingRule):
+		self.graph = None
                 self.location = location
 		self.liftingRule = liftingRule
 
@@ -29,7 +32,18 @@ class RDFFileDataSource(DataSource):
 		if self.liftingRule == None:
 			self.graph = Graph()
 			self.graph.parse(self.location)
+		else:
+			query = requests.get(self.liftingRule)
+			query = query.text
+			headers = {'content-type': 'application/x-www-form-urlencoded'}
+			params = {"query":query}
+			url = "https://ci.mines-stetienne.fr/sparql-generate/api/transform"
+			response = requests.post(url, params=params, headers=headers)
+			data = json.loads(response.text)
+			graphdata = data["output"]
+			self.graph = Graph().parse(data=graphdata,format="turtle")
 			
+	
 			
 	def cquery(self,query):
 		if self.graph == None:

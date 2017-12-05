@@ -35,16 +35,16 @@ InterLDP can function in debug mode or deploy mode:
 
 We provide a complete sample of a VirtualHost file:
 
-`
+```
 LoadModule proxy_module modules/mod_proxy.so
 LoadModule proxy_http_module modules/mod_proxy_http.so
 
-<VirtualHost *:80>
+<VirtualHost>
         ServerName example.com
 	WSGIDaemonProcess AppContextName user=www-data group=www-data threads=5
 	WSGIScriptAlias /AppContextName /path/to/start.wsgi`
 </VirtualHost>
-`
+```
 
 ## References:
 1. Speicher, Steve, John Arwe, and Ashok Malhotra. "Linked data platform 1.0." W3C Recommendation, February 26 (2015).
